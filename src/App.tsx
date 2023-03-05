@@ -3,22 +3,21 @@ import reactLogo from './assets/react.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [notes, setNotes] = useState([]);
+  let title = "";
+  let note = "";
   return (
     <div className="App">
       <h1>NotesApp</h1>
-      <h1> {count} </h1>
       <div className="card">
-        <button id="counter" onClick={() => setCount((count) => count + 1)}>
-          Count
-        </button>
-        <button onClick={() => setCount((count) => 0)}>
-          Reset
-        </button>
+        <textarea rows="1" cols="50" placeholder="Title"></textarea>
+        <br />
+        <textarea rows="10" cols="50" placeholder="Write a note..."></textarea>
+        <br />
+        <button className="add">Add Note</button>
       </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
