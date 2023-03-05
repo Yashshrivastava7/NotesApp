@@ -32,8 +32,8 @@ function NewNoteSection({ setNotes }: any) {
         <br />
         <textarea rows={10} cols={50} placeholder="Write a note..." onChange={handleNote}></textarea>
         <br />
-        <button className="add" onClick={handleClick}>Add Note</button>
       </div>
+      <button className="add" onClick={handleClick}>Add Note</button>       
     </div>
   );
 }
