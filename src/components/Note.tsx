@@ -1,4 +1,4 @@
-import './Note.css'
+import '../styles/Note.css'
 
 type Props = {
     title: string,
