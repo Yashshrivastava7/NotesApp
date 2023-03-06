@@ -1,5 +1,5 @@
 import Note from "./Note"
-import './NoteList.css'
+import '../styles/NoteList.css'
 
 function NoteList({ notes }: any) {
   return (

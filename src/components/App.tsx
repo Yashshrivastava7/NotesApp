@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './App.css'
+import '../styles/App.css'
 
 import NewNoteSection from "./NewNoteSection";
 import NoteList from "./NoteList";

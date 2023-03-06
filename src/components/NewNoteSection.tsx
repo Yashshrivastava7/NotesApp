@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './NewNoteSection.css'
+import '../styles/NewNoteSection.css'
 
 function NewNoteSection({ setNotes }: any) {
   const [note , setNote] = useState<string>('');
