@@ -1,24 +1,25 @@
-import Note from "./Note"
-import '../styles/NoteList.css'
+import Note from "./Note";
+import "../styles/NoteList.css";
+import { NoteObject } from "../types/Types";
 
-function NoteList({ notes }: any) {
+type Props = {
+  notes: NoteObject[];
+};
+
+function NoteList({ notes }: Props) {
   return (
     <div className="container">
-      <h1>
-        Notes
-      </h1>
+      <h1>Notes</h1>
       <div>
-        {
-          notes.length === 0 ?
+        {notes.length === 0 ? (
           <p>No Notes Available</p>
-          : <div>
-            {
-              notes.map((note: any) => {
-                return <Note title={note.title} body={note.body} />  
-              })
-            }
+        ) : (
+          <div>
+            {notes.map((note: NoteObject) => {
+              return <Note title={note.title} body={note.body} />;
+            })}
           </div>
-        }
+        )}
       </div>
     </div>
   );
