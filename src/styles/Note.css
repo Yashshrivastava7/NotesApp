@@ -1,5 +1,13 @@
 .each-note {
     display: flex;
     flex-direction: column;
-    margin: 10px;
+    min-width: 500px;
+    min-height: 50px;
+    border-style: solid;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 0%;
+    padding-bottom: 0%;
+    margin: 20px;
   }
