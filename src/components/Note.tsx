@@ -1,16 +1,13 @@
-import '../styles/Note.css'
+import "../styles/Note.css";
+import { NoteObject } from "../types/Types";
 
-type Props = {
-    title: string,
-    body: string
-};
-function Note(props: Props) {
-    return (
+function Note(props: NoteObject) {
+  return (
     <div className="each-note">
-        <h2>{props.title}</h2>
-        <p>{props.body}</p>
+      <h2>{props.title}</h2>
+      <p>{props.body}</p>
     </div>
-    );
+  );
 }
 
 export default Note;

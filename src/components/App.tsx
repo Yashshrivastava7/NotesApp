@@ -1,23 +1,18 @@
-import { useState } from 'react';
-import '../styles/App.css'
-
+import { useState } from "react";
+import "../styles/App.css";
 import NewNoteSection from "./NewNoteSection";
 import NoteList from "./NoteList";
-
-type DataObject = {
-  title: string,
-  body: string
-}
+import { NoteObject } from "../types/Types";
 
 function App() {
-  const [notes, setNotes] = useState<DataObject[]>([]);
+  const [notes, setNotes] = useState<NoteObject[]>([]);
   return (
     <div className="app-container">
       <div className="todo-section">
-        <NewNoteSection setNotes={setNotes}/>
+        <NewNoteSection notes={notes} setNotes={setNotes} />
       </div>
       <div className="todo-section">
-        <NoteList notes={notes}/>
+        <NoteList notes={notes} />
       </div>
     </div>
   );
