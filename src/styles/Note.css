@@ -1,13 +1,17 @@
 .each-note {
-    display: flex;
-    flex-direction: column;
-    min-width: 500px;
-    min-height: 50px;
-    border-style: solid;
-    border-radius: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 0%;
-    padding-bottom: 0%;
-    margin: 20px;
-  }
+  display: flex;
+  flex-direction: column;
+  min-width: 500px;
+  min-height: 50px;
+  border-style: solid;
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 0%;
+  padding-bottom: 0%;
+  margin: 20px;
+}
+
+.each-note:hover {
+  background-color: rgb(59, 55, 55);
+}
