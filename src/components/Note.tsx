@@ -1,11 +1,11 @@
 import "../styles/Note.css";
 import { NoteObject } from "../types/Types";
 
-const handleClick = () => {
-
-}
 
 function Note(props: NoteObject) {
+  const handleClick = () => {
+    
+  }
   return (
     <div className="each-note">
       <h2>{props.title}</h2>

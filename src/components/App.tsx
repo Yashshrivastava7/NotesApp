@@ -12,7 +12,7 @@ function App() {
         <NewNoteSection notes={notes} setNotes={setNotes} />
       </div>
       <div className="todo-section">
-        <NoteList notes={notes} />
+        <NoteList notes={notes} setNotes={setNotes}/>
       </div>
     </div>
   );
