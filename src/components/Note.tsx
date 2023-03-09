@@ -2,14 +2,20 @@ import "../styles/Note.css";
 import { NoteObject } from "../types/Types";
 
 type Props = {
-  notes: NoteObject[];
+  ID: string;
+  title: string;
+  body: string;
   setNotes : React.Dispatch<React.SetStateAction<NoteObject[]>>;
 };
 
 
-function Note(props: NoteObject) {
+function Note(props: Props) {
   const handleClick = () => {
-    
+    props.setNotes((old : NoteObject[]) : NoteObject[] => {
+      const idToRemove : string = props.ID;
+      const filteredArr : NoteObject[] = old.filter((item) => item.ID !== idToRemove);
+      return filteredArr;
+    })
   }
   return (
     <div className="each-note">
