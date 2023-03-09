@@ -1,6 +1,11 @@
 import "../styles/Note.css";
 import { NoteObject } from "../types/Types";
 
+type Props = {
+  notes: NoteObject[];
+  setNotes : React.Dispatch<React.SetStateAction<NoteObject[]>>;
+};
+
 
 function Note(props: NoteObject) {
   const handleClick = () => {
