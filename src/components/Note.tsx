@@ -2,7 +2,7 @@ import "../styles/Note.css";
 import { NoteObject } from "../types/Types";
 
 type Props = {
-  ID: string;
+  id: string;
   title: string;
   body: string;
   setNotes : React.Dispatch<React.SetStateAction<NoteObject[]>>;
@@ -12,7 +12,7 @@ type Props = {
 function Note(props: Props) {
   const handleClick = () => {
     props.setNotes((old : NoteObject[]) : NoteObject[] => {
-      const idToRemove : string = props.ID;
+      const idToRemove : string = props.id;
       const filteredArr : NoteObject[] = old.filter((item) => item.id !== idToRemove);
       return filteredArr;
     })
