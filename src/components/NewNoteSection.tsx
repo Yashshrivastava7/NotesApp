@@ -2,7 +2,6 @@ import { useState } from "react";
 import "../styles/NewNoteSection.css";
 import { NoteObject } from "../types/Types";
 import { v4 as uuidv4 } from 'uuid';
-uuidv4(); // ⇨ '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d'
 
 type Props = {
   notes: NoteObject[];
