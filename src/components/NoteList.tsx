@@ -7,7 +7,7 @@ type Props = {
   setNotes : React.Dispatch<React.SetStateAction<NoteObject[]>>;
 };
 
-function NoteList({ notes , setNotes }: Props) {
+function NoteList({ notes, setNotes }: Props) {
   return (
     <div className="container">
       <h1>Notes</h1>
