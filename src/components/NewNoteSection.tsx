@@ -20,9 +20,9 @@ function NewNoteSection({ notes, setNotes }: Props) {
     setTitle(e.target.value);
   };
   const handleClick = () => {
-    const userID= uuidv4(); 
+    const userID = uuidv4(); 
     let obj: NoteObject = {
-      ID: newUser,
+      id: userID,
       title: title,
       body: note,
     };

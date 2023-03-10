@@ -13,7 +13,7 @@ function Note(props: Props) {
   const handleClick = () => {
     props.setNotes((old : NoteObject[]) : NoteObject[] => {
       const idToRemove : string = props.ID;
-      const filteredArr : NoteObject[] = old.filter((item) => item.ID !== idToRemove);
+      const filteredArr : NoteObject[] = old.filter((item) => item.id !== idToRemove);
       return filteredArr;
     })
   }
