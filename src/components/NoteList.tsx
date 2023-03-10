@@ -4,9 +4,10 @@ import { NoteObject } from "../types/Types";
 
 type Props = {
   notes: NoteObject[];
+  setNotes : React.Dispatch<React.SetStateAction<NoteObject[]>>;
 };
 
-function NoteList({ notes }: Props) {
+function NoteList({ notes, setNotes }: Props) {
   return (
     <div className="container">
       <h1>Notes</h1>
@@ -16,7 +17,7 @@ function NoteList({ notes }: Props) {
         ) : (
           <div>
             {notes.map((note: NoteObject) => {
-              return <Note title={note.title} body={note.body} />;
+              return <Note id={note.id} title={note.title} body={note.body} setNotes={setNotes}/>;
             })}
           </div>
         )}

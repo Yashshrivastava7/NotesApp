@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../styles/NewNoteSection.css";
 import { NoteObject } from "../types/Types";
+import { v4 as uuidv4 } from 'uuid';
 
 type Props = {
   notes: NoteObject[];
@@ -18,7 +19,9 @@ function NewNoteSection({ notes, setNotes }: Props) {
     setTitle(e.target.value);
   };
   const handleClick = () => {
+    const userID = uuidv4(); 
     let obj: NoteObject = {
+      id: userID,
       title: title,
       body: note,
     };
