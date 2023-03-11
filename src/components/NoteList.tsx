@@ -11,11 +11,11 @@ function NoteList({ notes, setNotes }: Props) {
   return (
     <div className="container">
       <h1>Notes</h1>
-      <div>
+      <div className="note-container">
         {notes.length === 0 ? (
           <p>No Notes Available</p>
         ) : (
-          <div className="note-container">
+          <>
             {notes.map((note: NoteObject) => {
               return (
                 <Note
@@ -26,7 +26,7 @@ function NoteList({ notes, setNotes }: Props) {
                 />
               );
             })}
-          </div>
+          </>
         )}
       </div>
     </div>
