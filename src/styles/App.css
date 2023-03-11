@@ -11,7 +11,7 @@
     height: 100%;
     border: 2px;
     border-style: solid;
-    border-radius: 10px;
+    border-radius: 1rem;
 }
 
 .todo-section:hover {

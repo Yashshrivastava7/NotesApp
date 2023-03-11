@@ -1,15 +1,15 @@
 .each-note {
   display: flex;
   flex-direction: column;
-  min-width: 500px;
-  min-height: 50px;
+  min-width: 30rem;
+  min-height: 8rem;
   border-style: solid;
-  border-radius: 10px;
+  border-radius: 1rem;
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 0%;
   padding-bottom: 2%;
-  margin: 20px;
+  margin: 2rem;
 }
 
 .each-note:hover {
