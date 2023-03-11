@@ -18,6 +18,7 @@
 textarea {
   resize: none;
   width: 80%;
+  margin: 0.5%;
 }
 
 .note-title {
