@@ -19,7 +19,7 @@ body {
   margin: 0;
   /* display: flex;
   place-items: left; */
-  min-width: 320px;
+  min-width: 70rem;
   min-height: 100vh;
 }
 

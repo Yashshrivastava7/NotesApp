@@ -9,7 +9,7 @@
     min-height: 90vh;
     width: 48%;
     height: 100%;
-    border: 2px;
+    border: 0.15rem;
     border-style: solid;
     border-radius: 1rem;
 }
