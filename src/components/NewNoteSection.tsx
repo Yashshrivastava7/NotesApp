@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../styles/NewNoteSection.css";
 import { NoteObject } from "../types/Types";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 type Props = {
   notes: NoteObject[];
@@ -19,7 +19,7 @@ function NewNoteSection({ notes, setNotes }: Props) {
     setTitle(e.target.value);
   };
   const handleClick = () => {
-    const userID = uuidv4(); 
+    const userID = uuidv4();
     let obj: NoteObject = {
       id: userID,
       title: title,
@@ -46,15 +46,15 @@ function NewNoteSection({ notes, setNotes }: Props) {
           cols={50}
           placeholder="Title"
           onChange={handleTitle}
+          className="note-title"
         ></textarea>
-        <br />
         <textarea
           rows={10}
           cols={50}
           placeholder="Write a note..."
           onChange={handleNote}
+          className="note-body"
         ></textarea>
-        <br />
       </div>
       <button className="add" onClick={handleClick}>
         Add Note
