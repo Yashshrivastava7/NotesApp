@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "../styles/Login.css";
+import { useNavigate } from "react-router-dom";
 
 type UserPassType = {
   username: string;
@@ -12,6 +13,8 @@ function Login() {
   const [pass, setPass] = useState<string>("");
   const [loginMessage, setLoginMessage] = useState<string>("");
   const [isClicked, setIsClicked] = useState<boolean>(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isClicked) {
@@ -32,16 +35,14 @@ function Login() {
       setLoginMessage("Username not found !");
       return;
     }
-
     if (filtered[0].password === pass) {
-      setLoginMessage("Login Successful");
+      setLoginMessage("Login Successful!")
+      navigate("/app");
     } else {
-      setLoginMessage("Incorrect pass");
+      setLoginMessage("Incorrect pass!");
     }
   };
   const handleSignUp = () => {
-    console.log("User signed up!");
-    console.log("Username: " + id + " Password: " + pass);
     const filtered = data.filter((e) => e.username === id);
     if (filtered.length !== 0) {
       setLoginMessage("User already exists!");

@@ -2,6 +2,7 @@ import { useState } from "react";
 import "../styles/NewNoteSection.css";
 import { NoteObject } from "../types/Types";
 import { v4 as uuidv4 } from "uuid";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   notes: NoteObject[];
@@ -11,6 +12,8 @@ type Props = {
 function NewNoteSection({ notes, setNotes }: Props) {
   const [note, setNote] = useState<string>("");
   const [title, setTitle] = useState<string>("");
+
+  const navigate = useNavigate();
 
   const handleNote = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setNote(e.target.value);
@@ -59,6 +62,7 @@ function NewNoteSection({ notes, setNotes }: Props) {
       <button className="add" onClick={handleClick}>
         Add Note
       </button>
+      <button onClick={() => navigate("/")}>Logout</button>
     </div>
   );
 }

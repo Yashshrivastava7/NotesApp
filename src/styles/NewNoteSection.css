@@ -13,6 +13,7 @@
   justify-content: space-evenly;
   align-items: center;
   height: 90%;
+  gap: 5px;
 }
 
 textarea {
