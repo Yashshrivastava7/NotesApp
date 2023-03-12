@@ -16,3 +16,7 @@ input {
     width: 15%;
     margin: 0.1%;
 }
+
+.red {
+    color: red;
+}
