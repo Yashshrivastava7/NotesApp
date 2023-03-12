@@ -1,4 +1,4 @@
-import { useState } from "react" ;
+import { useEffect, useState } from "react" ;
 import "../styles/Login.css" ;
 
 const STUB_USERNAME: string = "username";
@@ -14,8 +14,15 @@ function Login() {
   const [id, setId] = useState<string>("");
   const [pass, setPass] = useState<string>("");
   const [loginMessage, setLoginMessage] = useState<string>("");
+  const [isClicked, setIsClicked] = useState<boolean>(false);
 
-  console.log(data);
+  useEffect(() => {
+    if (isClicked) {
+      console.log(data);
+      setIsClicked(false);
+    }
+  }, [isClicked]);
+  
   const handleUser = (e : React.ChangeEvent<HTMLInputElement>) => {
     setId(_ => e.target.value);
   }
@@ -23,16 +30,29 @@ function Login() {
     setPass(_ => e.target.value);
   }
   const handleLogin = () => {
-    console.log("Handling Login! username: "+ id + " Passowrd: "+pass);
-    if (id === STUB_USERNAME) {
-      if (pass === STUB_PASSWORD) {
-        setLoginMessage("Login Successful!");
-      } else {
-        setLoginMessage("Incorrect password");
-      }
-    } else {
-      setLoginMessage("Username not found");
+    // console.log("Handling Login! username: "+ id + " Passowrd: "+pass);
+    // if (id === STUB_USERNAME) {
+    //   if (pass === STUB_PASSWORD) {
+    //     setLoginMessage("Login Successful!");
+    //   } else {
+    //     setLoginMessage("Incorrect password");
+    //   }
+    // } else {
+    //   setLoginMessage("Username not found");
+    if(data.length === 0){
+      setLoginMessage("No User Exist");
     }
+    data.forEach((n) => {
+      if (n.username === id) {
+        if (n.password === pass) {
+          setLoginMessage("Login Successful!");
+        } else {
+          setLoginMessage("Incorrect password");
+        }
+      } else {
+        setLoginMessage("Username not found")
+      }
+    });
   }
   const handleSignUp = () => {
     console.log("User signed up!");
@@ -40,6 +60,7 @@ function Login() {
     setData((old: any): any => {
       return [...old, {username: id, password: pass}]
     });
+    setIsClicked(true);
   }
   return (
     <div className="login-holder">
