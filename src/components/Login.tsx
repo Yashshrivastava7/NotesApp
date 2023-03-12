@@ -1,51 +1,45 @@
 import { useState } from "react" ;
 import "../styles/Login.css" ;
 
-type userPass = {
-  username : string ;
-  password : string ;
+const STUB_USERNAME: string = "username";
+const STUB_PASSWORD: string = "password";
+
+type UserPassType = {
+  username: string,
+  password: string
 }
 
 function Login() {
-  const [log , setLog] = useState<userPass[]>([]);
-  let id : string = "" ;
-  let pass : string = "" ;
+  const [data, setData] = useState<UserPassType[]>([]);
+  const [id, setId] = useState<string>("");
+  const [pass, setPass] = useState<string>("");
+  const [loginMessage, setLoginMessage] = useState<string>("");
+
+  console.log(data);
   const handleUser = (e : React.ChangeEvent<HTMLInputElement>) => {
-    id = e.target.value ;
+    setId(_ => e.target.value);
   }
   const handlePass = (e : React.ChangeEvent<HTMLInputElement>) => {
-    pass = e.target.value ;
+    setPass(_ => e.target.value);
   }
   const handleLogin = () => {
-    let flag : number = 0;
-    log.map((n) => { 
-      if(n.username === id){
-        flag = 1;
-        if(n.password === pass) {
-          <p>
-            Login Successful
-          </p>
-        }
-        else {
-            <p className="red">
-              Wrong Password
-            </p>
-        }
+    console.log("Handling Login! username: "+ id + " Passowrd: "+pass);
+    if (id === STUB_USERNAME) {
+      if (pass === STUB_PASSWORD) {
+        setLoginMessage("Login Successful!");
+      } else {
+        setLoginMessage("Incorrect password");
       }
-    });
-    if(log.length === 0 || flag === 0) {
-        <p className="red">
-          User does not exist
-        </p>
+    } else {
+      setLoginMessage("Username not found");
     }
-    console.log(log);
   }
   const handleSignUp = () => {
-    setLog((old : userPass[]) : userPass[] => {
-      let newLog : userPass = { username : id , password : pass} ; 
-      return [newLog , ...old]
+    console.log("User signed up!");
+    console.log("Username: "+id+" Password: "+pass);
+    setData((old: any): any => {
+      return [...old, {username: id, password: pass}]
     });
-    console.log(log);
   }
   return (
     <div className="login-holder">
@@ -56,6 +50,7 @@ function Login() {
         <button onClick={handleLogin}>Login</button>
         <button onClick={handleSignUp}>Sign up</button>
       </div>
+      <p>{loginMessage}</p>
     </div>
   );
 }
