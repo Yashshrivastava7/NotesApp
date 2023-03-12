@@ -3,7 +3,6 @@ import "../styles/App.css";
 import NewNoteSection from "./NewNoteSection";
 import NoteList from "./NoteList";
 import { NoteObject } from "../types/Types";
-import Login from "./Login";
 
 function App() {
   const [notes, setNotes] = useState<NoteObject[]>([]);

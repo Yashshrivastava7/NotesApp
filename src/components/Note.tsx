@@ -5,18 +5,19 @@ type Props = {
   id: string;
   title: string;
   body: string;
-  setNotes : React.Dispatch<React.SetStateAction<NoteObject[]>>;
+  setNotes: React.Dispatch<React.SetStateAction<NoteObject[]>>;
 };
-
 
 function Note(props: Props) {
   const handleClick = () => {
-    props.setNotes((old : NoteObject[]) : NoteObject[] => {
-      const idToRemove : string = props.id;
-      const filteredArr : NoteObject[] = old.filter((item) => item.id !== idToRemove);
+    props.setNotes((old: NoteObject[]): NoteObject[] => {
+      const idToRemove: string = props.id;
+      const filteredArr: NoteObject[] = old.filter(
+        (item) => item.id !== idToRemove
+      );
       return filteredArr;
-    })
-  }
+    });
+  };
   return (
     <div className="each-note">
       <h2>{props.title}</h2>

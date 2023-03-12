@@ -1,18 +1,23 @@
 .login-holder {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15%;
 }
 
 .button-holder {
-    display: flex;
-    flex-direction: row;
-    gap: 0.5rem;
-    margin: 1%;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  margin: 1%;
 }
 
 input {
-    width: 15%;
-    margin: 0.1%;
+  width: 15%;
+  margin: 0.1%;
+}
+
+.red {
+  color: red;
 }
