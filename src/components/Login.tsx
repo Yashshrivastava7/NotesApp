@@ -52,6 +52,7 @@ function Login() {
     setData((old) => {
       return [...old, { username: id, password: pass }];
     });
+    setLoginMessage("Sign up Successful!")
     setIsClicked(true);
   };
   return (
