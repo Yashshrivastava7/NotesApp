@@ -30,33 +30,27 @@ function Login() {
     setPass(_ => e.target.value);
   }
   const handleLogin = () => {
-    // console.log("Handling Login! username: "+ id + " Passowrd: "+pass);
-    // if (id === STUB_USERNAME) {
-    //   if (pass === STUB_PASSWORD) {
-    //     setLoginMessage("Login Successful!");
-    //   } else {
-    //     setLoginMessage("Incorrect password");
-    //   }
-    // } else {
-    //   setLoginMessage("Username not found");
-    if(data.length === 0){
-      setLoginMessage("No User Exist");
+    const filtered = data.filter((e) => e.username === id);
+    if (filtered.length === 0) {
+      setLoginMessage("Username not found !");
+      return;
     }
-    data.forEach((n) => {
-      if (n.username === id) {
-        if (n.password === pass) {
-          setLoginMessage("Login Successful!");
-        } else {
-          setLoginMessage("Incorrect password");
-        }
-      } else {
-        setLoginMessage("Username not found")
-      }
-    });
+
+    if (filtered[0].password === pass) {
+      setLoginMessage("Login Successful");
+    } else {
+      setLoginMessage("Incorrect pass")
+    }
   }
   const handleSignUp = () => {
     console.log("User signed up!");
     console.log("Username: "+id+" Password: "+pass);
+    const filtered = data.filter((e) => e.username === id);
+    if (filtered.length !== 0) {
+      setLoginMessage("User already exists!");
+      setIsClicked(true);
+      return;
+    }
     setData((old: any): any => {
       return [...old, {username: id, password: pass}]
     });
