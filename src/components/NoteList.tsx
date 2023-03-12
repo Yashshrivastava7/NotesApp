@@ -17,14 +17,7 @@ function NoteList({ notes, setNotes }: Props) {
         ) : (
           <>
             {notes.map((note: NoteObject) => {
-              return (
-                <Note
-                  id={note.id}
-                  title={note.title}
-                  body={note.body}
-                  setNotes={setNotes}
-                />
-              );
+              return <Note {...note} setNotes={setNotes} />;
             })}
           </>
         )}
