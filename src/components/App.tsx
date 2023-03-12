@@ -17,9 +17,7 @@ function App() {
   //     </div>
   //   </div>
   // );
-  return (
-    <Login/>
-  );
+  return <Login />;
 }
 
 export default App;

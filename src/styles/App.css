@@ -1,19 +1,19 @@
 .app-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 2rem;
 }
 
 .todo-section {
-    min-height: 90vh;
-    width: 48%;
-    height: 100%;
-    border: 0.15rem;
-    border-style: solid;
-    border-radius: 1rem;
+  min-height: 90vh;
+  width: 48%;
+  height: 100%;
+  border: 0.15rem;
+  border-style: solid;
+  border-radius: 1rem;
 }
 
 .todo-section:hover {
-    background-color: rgb(43, 43, 43);
+  background-color: rgb(43, 43, 43);
 }
