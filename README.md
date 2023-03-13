@@ -2,7 +2,7 @@
 
 ## Note taking app made with `React` and `Typescript`
 
-### The application has two pages the root(`/`) and app(`/app`)
+### The application has two pages the root(`/`) and the app(`/app`)
 * Routing between the pages is done using `useNavigate` hook from `react-router-dom`
 * `Vite` is used to build the inital setup for devlopment
 
