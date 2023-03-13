@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
 import "../styles/Login.css";
 import { useNavigate } from "react-router-dom";
-
-type UserPassType = {
-  username: string;
-  password: string;
-};
+import { UserPassType } from "../types/Types";
 
 function Login() {
   const [data, setData] = useState<UserPassType[]>([]);

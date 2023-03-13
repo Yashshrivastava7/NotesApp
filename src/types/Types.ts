@@ -3,3 +3,8 @@ export type NoteObject = {
   title: string;
   body: string;
 };
+
+export type UserPassType = {
+  username: string;
+  password: string;
+};
