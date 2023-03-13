@@ -1,8 +1,14 @@
 # NotesApp
 
-## Note taking app made with `React`
+## Note taking app made with `React` and `Typescript`
+
+### The application has two pages the root(`/`) and app(`/app`)
+* Routing between the pages is done using `useNavigate` hook from `react-router-dom`
+* `Vite` is used to build the inital setup for devlopment
 
 ### Future integration :
-* Addition of NoSQL database 
-* Authentication API
+- [x] Addition of routing between pages
+- [ ] Addition of NoSQL database 
+- [ ] Creating Authentication API
+- [ ] Using JWT or Session-based Authentication
 
