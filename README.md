@@ -8,7 +8,7 @@
 
 ### Future integration :
 - [x] Addition of routing between pages
-- [ ] Addition of NoSQL database 
-- [ ] Creating Authentication API
-- [ ] Using JWT or Session-based Authentication
+- [x] Addition of NoSQL database 
+- [x] Creating Authentication API
+- [x] Using JWT or Session-based Authentication
 
