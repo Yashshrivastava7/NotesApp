@@ -8,3 +8,7 @@ export type UserPassType = {
   username: string;
   password: string;
 };
+
+export type TokenType = {
+  Authorization: string,
+} | null;

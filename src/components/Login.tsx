@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import "../styles/Login.css";
 import { useNavigate } from "react-router-dom";
-import { UserPassType } from "../types/Types";
+import { TokenType, UserPassType } from "../types/Types";
 
-function Login() {
+type Props = {
+  setAuthToken: any,
+}
+
+function Login(props: Props) {
   const [id, setId] = useState<string>("");
   const [pass, setPass] = useState<string>("");
   const [loginMessage, setLoginMessage] = useState<string>("");
@@ -34,6 +38,13 @@ function Login() {
       setLoginMessage("Invalid Credentials");
       return ;
     }
+    const data = await res.json();
+    console.log(data);
+    const token : TokenType = { 
+      Authorization: `Bearer ${data.AccessToken}`
+    }
+    console.log(token)
+    props.setAuthToken(token);
     setLoginMessage("Login Successful");
     navigate('/app');
   };
