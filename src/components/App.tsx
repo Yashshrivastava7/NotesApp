@@ -3,6 +3,7 @@ import "../styles/App.css";
 import NewNoteSection from "./NewNoteSection";
 import NoteList from "./NoteList";
 import { NoteObject, TokenType } from "../types/Types";
+import { Navigate } from "react-router";
 
 type Props = {
   authToken: TokenType;
@@ -22,8 +23,9 @@ function App(props: Props) {
       </div>
     </div>
   ) : (
-    <h1>Forbidden</h1>
-  );
+    <Navigate replace to='/' />
+  )
+  ;
 }
 
 export default App;
