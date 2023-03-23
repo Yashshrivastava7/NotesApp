@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { TokenType, UserPassType } from "../types/Types";
 
 type Props = {
-  setAuthToken: any,
-}
+  setAuthToken: React.Dispatch<React.SetStateAction<TokenType>>;
+};
 
 function Login(props: Props) {
   const [id, setId] = useState<string>("");
@@ -33,20 +33,20 @@ function Login(props: Props) {
       },
       body: JSON.stringify(idPass),
     });
-    console.log("Status Code: "+res.status);
-    if(res.status!==200){
+    console.log("Status Code: " + res.status);
+    if (res.status !== 200) {
       setLoginMessage("Invalid Credentials");
-      return ;
+      return;
     }
     const data = await res.json();
     console.log(data);
-    const token : TokenType = { 
-      Authorization: `Bearer ${data.AccessToken}`
-    }
-    console.log(token)
+    const token: TokenType = {
+      Authorization: `Bearer ${data.AccessToken}`,
+    };
+    console.log(token);
     props.setAuthToken(token);
     setLoginMessage("Login Successful");
-    navigate('/app');
+    navigate("/app");
   };
   const handleSignUp = async () => {
     const idPass = {
@@ -60,9 +60,9 @@ function Login(props: Props) {
       },
       body: JSON.stringify(idPass),
     });
-    console.log("Status Code: "+res.status);
+    console.log("Status Code: " + res.status);
     const data = await res.json();
-    if(res.status===200){
+    if (res.status === 200) {
       setLoginMessage(`${id} registered successfully`);
     }
   };

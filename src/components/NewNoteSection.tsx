@@ -1,15 +1,17 @@
 import { useState } from "react";
 import "../styles/NewNoteSection.css";
-import { NoteObject } from "../types/Types";
+import { NoteObject, TokenType } from "../types/Types";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
 
 type Props = {
   notes: NoteObject[];
   setNotes: React.Dispatch<React.SetStateAction<NoteObject[]>>;
+  authToken: TokenType;
+  setAuthToken: React.Dispatch<React.SetStateAction<TokenType>>;
 };
 
-function NewNoteSection({ notes, setNotes }: Props) {
+function NewNoteSection({ notes, setNotes, authToken, setAuthToken }: Props) {
   const [note, setNote] = useState<string>("");
   const [title, setTitle] = useState<string>("");
 
@@ -62,7 +64,13 @@ function NewNoteSection({ notes, setNotes }: Props) {
       <button className="add" onClick={handleClick}>
         Add Note
       </button>
-      <button onClick={() => navigate("/")}>Logout</button>
+      <button
+        onClick={() => {
+          setAuthToken(null);
+        }}
+      >
+        Logout
+      </button>
     </div>
   );
 }
