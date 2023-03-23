@@ -35,6 +35,7 @@ function Login() {
       return ;
     }
     setLoginMessage("Login Successful");
+    navigate('/app');
   };
   const handleSignUp = async () => {
     const idPass = {
