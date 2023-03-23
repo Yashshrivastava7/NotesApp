@@ -7,7 +7,7 @@ import { Navigate } from "react-router";
 
 type Props = {
   authToken: TokenType;
-  setAuthToken: React.Dispatch<React.SetStateAction<TokenType>>
+  setAuthToken: React.Dispatch<React.SetStateAction<TokenType>>;
 };
 
 function App(props: Props) {
@@ -16,16 +16,20 @@ function App(props: Props) {
   return props.authToken ? (
     <div className="app-container">
       <div className="todo-section">
-        <NewNoteSection notes={notes} authToken={props.authToken} setAuthToken={props.setAuthToken} setNotes={setNotes} />
+        <NewNoteSection
+          notes={notes}
+          authToken={props.authToken}
+          setAuthToken={props.setAuthToken}
+          setNotes={setNotes}
+        />
       </div>
       <div className="todo-section">
         <NoteList notes={notes} setNotes={setNotes} />
       </div>
     </div>
   ) : (
-    <Navigate replace to='/' />
-  )
-  ;
+    <Navigate replace to="/" />
+  );
 }
 
 export default App;
