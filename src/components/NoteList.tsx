@@ -48,7 +48,6 @@ function NoteList({ setRender, render, authToken }: Props) {
                 <Note
                   {...note}
                   setRender={setRender}
-                  render={render}
                   authToken={authToken}
                 />
               );
