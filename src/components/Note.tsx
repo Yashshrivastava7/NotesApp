@@ -9,7 +9,7 @@ type Props = {
   setRender: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-function Note({ render, authToken, id, title, note, setRender }: Props) {
+function Note({ authToken, id, title, note, setRender }: Props) {
   const handleClick = async () => {
     const data = await fetch(`http://localhost:8080/notes/${id}`, {
       method: "DELETE",
