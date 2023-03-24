@@ -1,7 +1,7 @@
 export type NoteObject = {
   id: string;
   title: string;
-  body: string;
+  note: string;
 };
 
 export type UserPassType = {

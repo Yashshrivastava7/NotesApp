@@ -1,13 +1,38 @@
 import Note from "./Note";
 import "../styles/NoteList.css";
-import { NoteObject } from "../types/Types";
+import { NoteObject, TokenType } from "../types/Types";
+import { useEffect, useState } from "react";
 
 type Props = {
-  notes: NoteObject[];
-  setNotes: React.Dispatch<React.SetStateAction<NoteObject[]>>;
+  //notes: NoteObject[];
+  authToken: TokenType;
+  // setNotes: React.Dispatch<React.SetStateAction<NoteObject[]>>;
 };
 
-function NoteList({ notes, setNotes }: Props) {
+function NoteList({ authToken }: Props) {
+  const [notes, setNotes] = useState<NoteObject[]>([]);
+  useEffect(() => {
+    async function fetchData() {
+      const data = await fetch("http://localhost:8080/notes", {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: authToken!.Authorization,
+        },
+      });
+      const jsonData = await data.json();
+      setNotes((old) => jsonData.map((obj: any): NoteObject => {
+        return {
+          id: obj._id,
+          title: obj.title,
+          note: obj.note
+        };
+      }));
+    }
+    fetchData();
+  }, []);
+  console.log(notes);
   return (
     <div className="container">
       <h1>Notes</h1>
@@ -17,7 +42,7 @@ function NoteList({ notes, setNotes }: Props) {
         ) : (
           <>
             {notes.map((note: NoteObject) => {
-              return <Note {...note} setNotes={setNotes} />;
+              return <Note {...note} />;
             })}
           </>
         )}

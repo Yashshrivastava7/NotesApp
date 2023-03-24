@@ -15,8 +15,6 @@ function NewNoteSection({ notes, setNotes, authToken, setAuthToken }: Props) {
   const [note, setNote] = useState<string>("");
   const [title, setTitle] = useState<string>("");
 
-  const navigate = useNavigate();
-
   const handleNote = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setNote(e.target.value);
   };
@@ -28,12 +26,12 @@ function NewNoteSection({ notes, setNotes, authToken, setAuthToken }: Props) {
     let obj: NoteObject = {
       id: userID,
       title: title,
-      body: note,
+      note: note,
     };
     if (
       notes.length !== 0 &&
       title == notes[0].title &&
-      note == notes[0].body
+      note == notes[0].note
     ) {
       return;
     }

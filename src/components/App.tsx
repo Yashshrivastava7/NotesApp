@@ -12,6 +12,7 @@ type Props = {
 
 function App(props: Props) {
   const [notes, setNotes] = useState<NoteObject[]>([]);
+  const [render, setRender] = useState<boolean>(false);
   console.log(`Inside App ${props.authToken?.Authorization}`);
   return props.authToken ? (
     <div className="app-container">
@@ -24,7 +25,7 @@ function App(props: Props) {
         />
       </div>
       <div className="todo-section">
-        <NoteList notes={notes} setNotes={setNotes} />
+        <NoteList authToken={props.authToken} />
       </div>
     </div>
   ) : (
