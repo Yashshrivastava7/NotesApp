@@ -3,13 +3,12 @@ import "../styles/NewNoteSection.css";
 import { TokenType } from "../types/Types";
 
 type Props = {
-  render: boolean;
   setRender: React.Dispatch<React.SetStateAction<boolean>>;
   authToken: TokenType;
   setAuthToken: React.Dispatch<React.SetStateAction<TokenType>>;
 };
 
-function NewNoteSection({ render, setRender, authToken, setAuthToken }: Props) {
+function NewNoteSection({ setRender, authToken, setAuthToken }: Props) {
   const [note, setNote] = useState<string>("");
   const [title, setTitle] = useState<string>("");
 
@@ -33,11 +32,7 @@ function NewNoteSection({ render, setRender, authToken, setAuthToken }: Props) {
       },
       body: JSON.stringify(Noteobj),
     });
-    if (render === true) {
-      setRender(false);
-    } else {
-      setRender(true);
-    }
+    setRender((old) => !old);
   };
 
   return (

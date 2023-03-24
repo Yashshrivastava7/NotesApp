@@ -2,7 +2,6 @@ import "../styles/Note.css";
 import { TokenType } from "../types/Types";
 
 type Props = {
-  render: boolean;
   authToken: TokenType;
   id: string;
   title: string;
@@ -20,11 +19,7 @@ function Note({ render, authToken, id, title, note, setRender }: Props) {
         Authorization: authToken!.Authorization,
       },
     });
-    if (render === true) {
-      setRender(false);
-    } else {
-      setRender(true);
-    }
+    setRender((old) => !old);
   };
   return (
     <div className="each-note">

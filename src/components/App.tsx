@@ -17,7 +17,6 @@ function App(props: Props) {
     <div className="app-container">
       <div className="todo-section">
         <NewNoteSection
-          render={render}
           setRender={setRender}
           authToken={props.authToken}
           setAuthToken={props.setAuthToken}
