@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import "../styles/Login.css";
 import { useNavigate } from "react-router-dom";
-import { UserPassType } from "../types/Types";
+import { TokenType, UserPassType } from "../types/Types";
 
-function Login() {
-  const [data, setData] = useState<UserPassType[]>([]);
+type Props = {
+  setAuthToken: React.Dispatch<React.SetStateAction<TokenType>>;
+};
+
+function Login(props: Props) {
   const [id, setId] = useState<string>("");
   const [pass, setPass] = useState<string>("");
   const [loginMessage, setLoginMessage] = useState<string>("");
@@ -12,44 +15,56 @@ function Login() {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (isClicked) {
-      console.log(data);
-      setIsClicked(false);
-    }
-  }, [isClicked]);
-
   const handleUser = (e: React.ChangeEvent<HTMLInputElement>) => {
     setId((_) => e.target.value);
   };
   const handlePass = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPass((_) => e.target.value);
   };
-  const handleLogin = () => {
-    const filtered = data.filter((e) => e.username === id);
-    if (filtered.length === 0) {
-      setLoginMessage("Username not found !");
-      return;
-    }
-    if (filtered[0].password === pass) {
-      setLoginMessage("Login Successful!")
-      navigate("/app");
-    } else {
-      setLoginMessage("Incorrect pass!");
-    }
-  };
-  const handleSignUp = () => {
-    const filtered = data.filter((e) => e.username === id);
-    if (filtered.length !== 0) {
-      setLoginMessage("User already exists!");
-      setIsClicked(true);
-      return;
-    }
-    setData((old) => {
-      return [...old, { username: id, password: pass }];
+  const handleLogin = async () => {
+    const idPass = {
+      username: id,
+      password: pass,
+    };
+    const res = await fetch("http://localhost:8080/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(idPass),
     });
-    setLoginMessage(id+" registered successfully!")
-    setIsClicked(true);
+    console.log("Status Code: " + res.status);
+    if (res.status !== 200) {
+      setLoginMessage("Invalid Credentials");
+      return;
+    }
+    const data = await res.json();
+    console.log(data);
+    const token: TokenType = {
+      Authorization: `Bearer ${data.AccessToken}`,
+    };
+    console.log(token);
+    props.setAuthToken(token);
+    setLoginMessage("Login Successful");
+    navigate("/app");
+  };
+  const handleSignUp = async () => {
+    const idPass = {
+      username: id,
+      password: pass,
+    };
+    const res = await fetch("http://localhost:8080/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(idPass),
+    });
+    console.log("Status Code: " + res.status);
+    const data = await res.json();
+    if (res.status === 200) {
+      setLoginMessage(`${id} registered successfully`);
+    }
   };
   return (
     <div className="login-holder">

@@ -1,19 +1,16 @@
 import { useState } from "react";
 import "../styles/NewNoteSection.css";
-import { NoteObject } from "../types/Types";
-import { v4 as uuidv4 } from "uuid";
-import { useNavigate } from "react-router-dom";
+import { TokenType } from "../types/Types";
 
 type Props = {
-  notes: NoteObject[];
-  setNotes: React.Dispatch<React.SetStateAction<NoteObject[]>>;
+  setRender: React.Dispatch<React.SetStateAction<boolean>>;
+  authToken: TokenType;
+  setAuthToken: React.Dispatch<React.SetStateAction<TokenType>>;
 };
 
-function NewNoteSection({ notes, setNotes }: Props) {
+function NewNoteSection({ setRender, authToken, setAuthToken }: Props) {
   const [note, setNote] = useState<string>("");
   const [title, setTitle] = useState<string>("");
-
-  const navigate = useNavigate();
 
   const handleNote = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setNote(e.target.value);
@@ -21,23 +18,21 @@ function NewNoteSection({ notes, setNotes }: Props) {
   const handleTitle = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTitle(e.target.value);
   };
-  const handleClick = () => {
-    const userID = uuidv4();
-    let obj: NoteObject = {
-      id: userID,
+  const handleClick = async () => {
+    const Noteobj = {
       title: title,
-      body: note,
+      note: note,
     };
-    if (
-      notes.length !== 0 &&
-      title == notes[0].title &&
-      note == notes[0].body
-    ) {
-      return;
-    }
-    setNotes((old: NoteObject[]): NoteObject[] => {
-      return [obj, ...old];
+    const data = await fetch("http://localhost:8080/notes", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: authToken!.Authorization,
+      },
+      body: JSON.stringify(Noteobj),
     });
+    setRender((old) => !old);
   };
 
   return (
@@ -62,7 +57,13 @@ function NewNoteSection({ notes, setNotes }: Props) {
       <button className="add" onClick={handleClick}>
         Add Note
       </button>
-      <button onClick={() => navigate("/")}>Logout</button>
+      <button
+        onClick={() => {
+          setAuthToken(null);
+        }}
+      >
+        Logout
+      </button>
     </div>
   );
 }
