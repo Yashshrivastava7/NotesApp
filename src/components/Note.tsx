@@ -1,27 +1,35 @@
 import "../styles/Note.css";
-import { NoteObject } from "../types/Types";
+import { TokenType } from "../types/Types";
 
 type Props = {
+  render: boolean;
+  authToken: TokenType;
   id: string;
   title: string;
   note: string;
-  // setNotes: React.Dispatch<React.SetStateAction<NoteObject[]>>;
+  setRender: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-function Note(props: Props) {
-  const handleClick = () => {
-    // props.setNotes((old: NoteObject[]): NoteObject[] => {
-    //   const idToRemove: string = props.id;
-    //   const filteredArr: NoteObject[] = old.filter(
-    //     (item) => item.id !== idToRemove
-    //   );
-    //   return filteredArr;
-    // });
+function Note({ render, authToken, id, title, note, setRender }: Props) {
+  const handleClick = async () => {
+    const data = await fetch(`http://localhost:8080/notes/${id}`, {
+      method: "DELETE",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: authToken!.Authorization,
+      },
+    });
+    if (render === true) {
+      setRender(false);
+    } else {
+      setRender(true);
+    }
   };
   return (
     <div className="each-note">
-      <h2>{props.title}</h2>
-      <p>{props.note}</p>
+      <h2>{title}</h2>
+      <p>{note}</p>
       <button className="note-button" onClick={handleClick}>
         Delete note
       </button>

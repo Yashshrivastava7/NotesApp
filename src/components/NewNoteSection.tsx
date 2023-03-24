@@ -1,17 +1,15 @@
 import { useState } from "react";
 import "../styles/NewNoteSection.css";
-import { NoteObject, TokenType } from "../types/Types";
-import { v4 as uuidv4 } from "uuid";
-import { useNavigate } from "react-router-dom";
+import { TokenType } from "../types/Types";
 
 type Props = {
-  notes: NoteObject[];
-  setNotes: React.Dispatch<React.SetStateAction<NoteObject[]>>;
+  render: boolean;
+  setRender: React.Dispatch<React.SetStateAction<boolean>>;
   authToken: TokenType;
   setAuthToken: React.Dispatch<React.SetStateAction<TokenType>>;
 };
 
-function NewNoteSection({ notes, setNotes, authToken, setAuthToken }: Props) {
+function NewNoteSection({ render, setRender, authToken, setAuthToken }: Props) {
   const [note, setNote] = useState<string>("");
   const [title, setTitle] = useState<string>("");
 
@@ -21,23 +19,25 @@ function NewNoteSection({ notes, setNotes, authToken, setAuthToken }: Props) {
   const handleTitle = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTitle(e.target.value);
   };
-  const handleClick = () => {
-    const userID = uuidv4();
-    let obj: NoteObject = {
-      id: userID,
+  const handleClick = async () => {
+    const Noteobj = {
       title: title,
       note: note,
     };
-    if (
-      notes.length !== 0 &&
-      title == notes[0].title &&
-      note == notes[0].note
-    ) {
-      return;
-    }
-    setNotes((old: NoteObject[]): NoteObject[] => {
-      return [obj, ...old];
+    const data = await fetch("http://localhost:8080/notes", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: authToken!.Authorization,
+      },
+      body: JSON.stringify(Noteobj),
     });
+    if (render === true) {
+      setRender(false);
+    } else {
+      setRender(true);
+    }
   };
 
   return (

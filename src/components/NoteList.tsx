@@ -4,12 +4,12 @@ import { NoteObject, TokenType } from "../types/Types";
 import { useEffect, useState } from "react";
 
 type Props = {
-  //notes: NoteObject[];
+  render: boolean;
+  setRender: React.Dispatch<React.SetStateAction<boolean>>;
   authToken: TokenType;
-  // setNotes: React.Dispatch<React.SetStateAction<NoteObject[]>>;
 };
 
-function NoteList({ authToken }: Props) {
+function NoteList({ setRender, render, authToken }: Props) {
   const [notes, setNotes] = useState<NoteObject[]>([]);
   useEffect(() => {
     async function fetchData() {
@@ -22,16 +22,18 @@ function NoteList({ authToken }: Props) {
         },
       });
       const jsonData = await data.json();
-      setNotes((old) => jsonData.map((obj: any): NoteObject => {
-        return {
-          id: obj._id,
-          title: obj.title,
-          note: obj.note
-        };
-      }));
+      setNotes((old) =>
+        jsonData.map((obj: any): NoteObject => {
+          return {
+            id: obj._id,
+            title: obj.title,
+            note: obj.note,
+          };
+        })
+      );
     }
     fetchData();
-  }, []);
+  }, [render]);
   console.log(notes);
   return (
     <div className="container">
@@ -42,7 +44,14 @@ function NoteList({ authToken }: Props) {
         ) : (
           <>
             {notes.map((note: NoteObject) => {
-              return <Note {...note} />;
+              return (
+                <Note
+                  {...note}
+                  setRender={setRender}
+                  render={render}
+                  authToken={authToken}
+                />
+              );
             })}
           </>
         )}

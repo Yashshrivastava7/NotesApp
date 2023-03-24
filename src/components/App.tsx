@@ -2,7 +2,7 @@ import { useState } from "react";
 import "../styles/App.css";
 import NewNoteSection from "./NewNoteSection";
 import NoteList from "./NoteList";
-import { NoteObject, TokenType } from "../types/Types";
+import { TokenType } from "../types/Types";
 import { Navigate } from "react-router";
 
 type Props = {
@@ -11,21 +11,24 @@ type Props = {
 };
 
 function App(props: Props) {
-  const [notes, setNotes] = useState<NoteObject[]>([]);
   const [render, setRender] = useState<boolean>(false);
   console.log(`Inside App ${props.authToken?.Authorization}`);
   return props.authToken ? (
     <div className="app-container">
       <div className="todo-section">
         <NewNoteSection
-          notes={notes}
+          render={render}
+          setRender={setRender}
           authToken={props.authToken}
           setAuthToken={props.setAuthToken}
-          setNotes={setNotes}
         />
       </div>
       <div className="todo-section">
-        <NoteList authToken={props.authToken} />
+        <NoteList
+          render={render}
+          setRender={setRender}
+          authToken={props.authToken}
+        />
       </div>
     </div>
   ) : (
