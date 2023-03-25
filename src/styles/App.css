@@ -15,8 +15,10 @@
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
+  transition: border-color 0.25s;
 }
 
 .todo-section:hover {
   background-color: rgb(43, 43, 43);
+  border-color: #535bf2;
 }
