@@ -14,10 +14,15 @@
   -webkit-text-size-adjust: 100%;
 }
 
+#root {
+  height: 100vh;
+  width: 100vw;
+}
+
 body {
   margin: 0;
-  /* display: flex;
-  place-items: left; */
+  height: 100%;
+  width: 100%;
   min-width: 70rem;
   min-height: 100vh;
 }

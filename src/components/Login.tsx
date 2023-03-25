@@ -67,17 +67,19 @@ function Login(props: Props) {
     }
   };
   return (
-    <div className="login-holder">
-      <div className="login">
-        <h1>NotesApp</h1>
-        <input type="text" placeholder="Username" onChange={handleUser} />
-        <input type="password" placeholder="Password" onChange={handlePass} />
-        <div className="button-holder">
-          <button onClick={handleLogin}>Login</button>
-          <button onClick={handleSignUp}>Sign up</button>
+    <div className="login-container">
+      <div className="login-holder">
+        <div className="login">
+          <h1>NotesApp</h1>
+          <input type="text" placeholder="Username" onChange={handleUser} />
+          <input type="password" placeholder="Password" onChange={handlePass} />
+          <div className="button-holder">
+            <button onClick={handleLogin}>Login</button>
+            <button onClick={handleSignUp}>Sign up</button>
+          </div>
         </div>
+        <p>{loginMessage}</p>
       </div>
-      <p>{loginMessage}</p>
     </div>
   );
 }

@@ -13,6 +13,8 @@
   border: 0.15rem;
   border-style: solid;
   border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .todo-section:hover {

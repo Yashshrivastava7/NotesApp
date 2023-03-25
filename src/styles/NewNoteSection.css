@@ -12,18 +12,20 @@ h1 {
 }
 
 .App {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
-  height: 90%;
+  height: 100%;
   gap: 5px;
 }
 
 textarea {
   resize: none;
   width: 80%;
-  margin: 0.5%;
+  margin: 1%;
+  padding: 8px;
 }
 
 .note-title {
@@ -32,4 +34,16 @@ textarea {
 
 .note-body {
   font-size: large;
+}
+
+.logout-container {
+  justify-self: flex-end;
+  margin-bottom: 3%;
+}
+
+.new-note-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

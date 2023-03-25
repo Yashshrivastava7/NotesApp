@@ -37,6 +37,7 @@ function NewNoteSection({ setRender, authToken, setAuthToken }: Props) {
 
   return (
     <div className="App">
+      <div className="new-note-container">
       <h1>NotesApp</h1>
       <div className="card">
         <textarea
@@ -57,6 +58,8 @@ function NewNoteSection({ setRender, authToken, setAuthToken }: Props) {
       <button className="add" onClick={handleClick}>
         Add Note
       </button>
+      </div>
+      <div className="logout-container">
       <button
         onClick={() => {
           setAuthToken(null);
@@ -64,6 +67,7 @@ function NewNoteSection({ setRender, authToken, setAuthToken }: Props) {
       >
         Logout
       </button>
+      </div>
     </div>
   );
 }
