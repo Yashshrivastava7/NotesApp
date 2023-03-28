@@ -23,11 +23,15 @@ function Note({ authToken, id, title, note, setRender }: Props) {
   };
   return (
     <div className="each-note">
-      <h2>{title}</h2>
-      <p>{note}</p>
-      <button className="note-button" onClick={handleClick}>
-        Delete note
-      </button>
+      <div className="title-and-note">
+        <h2>{title}</h2>
+        <p>{note}</p>
+      </div>
+      <div className="del-button-container">
+        <button className="note-button" onClick={handleClick}>
+          X
+        </button>
+      </div>
     </div>
   );
 }
