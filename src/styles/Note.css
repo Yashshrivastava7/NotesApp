@@ -1,6 +1,6 @@
 .each-note {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   width: 90%;
   min-height: 8rem;
   border: 2px;
@@ -15,12 +15,33 @@
   transition: border-color 0.25s;
 }
 
+.title-and-note {
+  display: flex;
+  flex-direction: column;
+  padding-right: 10px;
+}
+
 .each-note:hover {
   background-color: rgb(59, 55, 55);
   border-color: #535bf2;
 }
 
+.del-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .note-button {
-  max-width: max-content;
-  align-self: center;
+  width: 40px;
+  height: 100%;
+  text-align: center;
+  padding: 0;
+  max-height: 100px;
+  border: solid 2px white;
+}
+
+.note-button:hover {
+  background-color: #4e0707;
+  border-color: white;
 }
