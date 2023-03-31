@@ -37,6 +37,7 @@ function NewNoteSection({ setRender, authToken, setAuthToken }: Props) {
     if (res.status === 401) {
       toast.error(data.message);
     }
+    toast.success("Note Added Successfully");
     setRender((old) => !old);
   };
 
