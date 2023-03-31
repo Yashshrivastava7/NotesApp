@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "../styles/Login.css";
 import { useNavigate } from "react-router-dom";
-import { TokenType, UserPassType } from "../types/Types";
+import { TokenType } from "../types/Types";
+import { toast } from "react-hot-toast";
 
 type Props = {
   setAuthToken: React.Dispatch<React.SetStateAction<TokenType>>;
@@ -10,7 +11,6 @@ type Props = {
 function Login(props: Props) {
   const [id, setId] = useState<string>("");
   const [pass, setPass] = useState<string>("");
-  const [loginMessage, setLoginMessage] = useState<string>("");
   const [isClicked, setIsClicked] = useState<boolean>(false);
 
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ function Login(props: Props) {
     });
     console.log("Status Code: " + res.status);
     if (res.status !== 200) {
-      setLoginMessage("Invalid Credentials");
+      toast.error("Invalid Credentials");
       return;
     }
     const data = await res.json();
@@ -45,7 +45,6 @@ function Login(props: Props) {
     };
     console.log(token);
     props.setAuthToken(token);
-    setLoginMessage("Login Successful");
     navigate("/app");
   };
   const handleSignUp = async () => {
@@ -62,9 +61,12 @@ function Login(props: Props) {
     });
     console.log("Status Code: " + res.status);
     const data = await res.json();
+    console.log(data);
     if (res.status === 200) {
-      setLoginMessage(`${id} registered successfully`);
+      toast.success(`${id} registered successfully`);
+      return;
     }
+    toast.error(data.message);
   };
   return (
     <div className="login-container">
@@ -78,7 +80,6 @@ function Login(props: Props) {
             <button onClick={handleSignUp}>Sign up</button>
           </div>
         </div>
-        <p>{loginMessage}</p>
       </div>
     </div>
   );

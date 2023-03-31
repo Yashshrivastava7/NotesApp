@@ -1,4 +1,5 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 import "../styles/NewNoteSection.css";
 import { TokenType } from "../types/Types";
 
@@ -23,7 +24,7 @@ function NewNoteSection({ setRender, authToken, setAuthToken }: Props) {
       title: title,
       note: note,
     };
-    const data = await fetch("http://localhost:8080/notes", {
+    const res = await fetch("http://localhost:8080/notes", {
       method: "POST",
       mode: "cors",
       headers: {
@@ -32,41 +33,45 @@ function NewNoteSection({ setRender, authToken, setAuthToken }: Props) {
       },
       body: JSON.stringify(Noteobj),
     });
+    const data = await res.json();
+    if (res.status === 401) {
+      toast.error(data.message);
+    }
     setRender((old) => !old);
   };
 
   return (
     <div className="App">
       <div className="new-note-container">
-      <h1>NotesApp</h1>
-      <div className="card">
-        <textarea
-          rows={1}
-          cols={50}
-          placeholder="Title"
-          onChange={handleTitle}
-          className="note-title"
-        ></textarea>
-        <textarea
-          rows={10}
-          cols={50}
-          placeholder="Write a note..."
-          onChange={handleNote}
-          className="note-body"
-        ></textarea>
-      </div>
-      <button className="add" onClick={handleClick}>
-        Add Note
-      </button>
+        <h1>NotesApp</h1>
+        <div className="card">
+          <textarea
+            rows={1}
+            cols={50}
+            placeholder="Title"
+            onChange={handleTitle}
+            className="note-title"
+          ></textarea>
+          <textarea
+            rows={10}
+            cols={50}
+            placeholder="Write a note..."
+            onChange={handleNote}
+            className="note-body"
+          ></textarea>
+        </div>
+        <button className="add" onClick={handleClick}>
+          Add Note
+        </button>
       </div>
       <div className="logout-container">
-      <button
-        onClick={() => {
-          setAuthToken(null);
-        }}
-      >
-        Logout
-      </button>
+        <button
+          onClick={() => {
+            setAuthToken(null);
+          }}
+        >
+          Logout
+        </button>
       </div>
     </div>
   );
