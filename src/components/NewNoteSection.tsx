@@ -36,6 +36,7 @@ function NewNoteSection({ setRender, authToken, setAuthToken }: Props) {
     const data = await res.json();
     if (res.status === 401) {
       toast.error(data.message);
+      return;
     }
     toast.success("Note Added Successfully");
     setRender((old) => !old);
