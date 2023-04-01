@@ -45,11 +45,7 @@ function NoteList({ setRender, render, authToken }: Props) {
           <>
             {notes.map((note: NoteObject) => {
               return (
-                <Note
-                  {...note}
-                  setRender={setRender}
-                  authToken={authToken}
-                />
+                <Note {...note} setRender={setRender} authToken={authToken} />
               );
             })}
           </>
