@@ -6,7 +6,6 @@
   align-items: center;
 }
 
-
 .login-holder {
   height: 50%;
   width: 35%;
@@ -18,7 +17,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: solid;
+  border: solid 0.1em;
   border-radius: 5%;
   padding: 5%;
   transition: border-color 0.25s;
