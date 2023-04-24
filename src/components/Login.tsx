@@ -1,14 +1,15 @@
 import { useState } from "react";
 import "../styles/Login.css";
 import { useNavigate } from "react-router-dom";
-import { TokenType } from "../types/Types";
+// import { TokenType } from "../types/Types";
 import { toast } from "react-hot-toast";
 
-type Props = {
-  setAuthToken: React.Dispatch<React.SetStateAction<TokenType>>;
-};
+// type Props = {
+//   setAuthToken: React.Dispatch<React.SetStateAction<TokenType>>;
+// };
 
-function Login(props: Props) {
+// function Login(props: Props) {
+function Login() {
   const [id, setId] = useState<string>("");
   const [pass, setPass] = useState<string>("");
   const [isClicked, setIsClicked] = useState<boolean>(false);
@@ -28,23 +29,26 @@ function Login(props: Props) {
     };
     const res = await fetch("http://localhost:8080/login", {
       method: "POST",
+      mode: "cors",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(idPass),
     });
+    console.log(res);
     console.log("Status Code: " + res.status);
     if (res.status !== 200) {
       toast.error("Invalid Credentials");
       return;
     }
-    const data = await res.json();
-    console.log(data);
-    const token: TokenType = {
-      Authorization: `Bearer ${data.AccessToken}`,
-    };
-    console.log(token);
-    props.setAuthToken(token);
+    // const data = await res.json();
+    // console.log(data);
+    // const token: TokenType = {
+    //   Authorization: `Bearer ${data.AccessToken}`,
+    // };
+    // console.log(token);
+    // props.setAuthToken(token);
     navigate("/app");
   };
   const handleSignUp = async () => {
