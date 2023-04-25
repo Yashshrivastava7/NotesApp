@@ -1,14 +1,8 @@
 import { useState } from "react";
 import "../styles/Login.css";
 import { useNavigate } from "react-router-dom";
-// import { TokenType } from "../types/Types";
 import { toast } from "react-hot-toast";
 
-// type Props = {
-//   setAuthToken: React.Dispatch<React.SetStateAction<TokenType>>;
-// };
-
-// function Login(props: Props) {
 function Login() {
   const [id, setId] = useState<string>("");
   const [pass, setPass] = useState<string>("");
@@ -42,13 +36,6 @@ function Login() {
       toast.error("Invalid Credentials");
       return;
     }
-    // const data = await res.json();
-    // console.log(data);
-    // const token: TokenType = {
-    //   Authorization: `Bearer ${data.AccessToken}`,
-    // };
-    // console.log(token);
-    // props.setAuthToken(token);
     navigate("/app");
   };
   const handleSignUp = async () => {
