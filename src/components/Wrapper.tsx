@@ -6,13 +6,12 @@ import App from "./App";
 import { TokenType } from "../types/Types";
 
 function Wrapper() {
-  const [authToken, setAuthToken] = useState<TokenType>(null);
   return (
     <Routes>
-      <Route path="/" element={<Login setAuthToken={setAuthToken} />} />
+      <Route path="/" element={<Login />} />
       <Route
         path="/app"
-        element={<App setAuthToken={setAuthToken} authToken={authToken} />}
+        element={<App />}
       />
     </Routes>
   );

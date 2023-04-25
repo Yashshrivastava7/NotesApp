@@ -2,25 +2,26 @@ import Note from "./Note";
 import "../styles/NoteList.css";
 import { NoteObject, TokenType } from "../types/Types";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   render: boolean;
   setRender: React.Dispatch<React.SetStateAction<boolean>>;
-  authToken: TokenType;
 };
 
-function NoteList({ setRender, render, authToken }: Props) {
+function NoteList({ setRender, render }: Props) {
   const [notes, setNotes] = useState<NoteObject[]>([]);
+  const navigate = useNavigate();
   useEffect(() => {
     async function fetchData() {
       const data = await fetch("http://localhost:8080/notes", {
         method: "GET",
         mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: authToken!.Authorization,
-        },
+        credentials: "include",
       });
+      if (data.status === 403) {
+        navigate("/");
+      }
       const jsonData = await data.json();
       setNotes((old) =>
         jsonData.map((obj: any): NoteObject => {
@@ -45,7 +46,7 @@ function NoteList({ setRender, render, authToken }: Props) {
           <>
             {notes.map((note: NoteObject) => {
               return (
-                <Note {...note} setRender={setRender} authToken={authToken} />
+                <Note {...note} setRender={setRender} />
               );
             })}
           </>

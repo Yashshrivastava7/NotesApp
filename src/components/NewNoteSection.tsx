@@ -1,17 +1,17 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import "../styles/NewNoteSection.css";
-import { TokenType } from "../types/Types";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   setRender: React.Dispatch<React.SetStateAction<boolean>>;
-  authToken: TokenType;
-  setAuthToken: React.Dispatch<React.SetStateAction<TokenType>>;
 };
 
-function NewNoteSection({ setRender, authToken, setAuthToken }: Props) {
+function NewNoteSection({ setRender }: Props) {
   const [note, setNote] = useState<string>("");
   const [title, setTitle] = useState<string>("");
+
+  const navigate = useNavigate();
 
   const handleNote = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setNote(e.target.value);
@@ -20,27 +20,33 @@ function NewNoteSection({ setRender, authToken, setAuthToken }: Props) {
     setTitle(e.target.value);
   };
   const handleClick = async () => {
-    const Noteobj = {
+    const noteObj = {
       title: title,
       note: note,
     };
     const res = await fetch("http://localhost:8080/notes", {
       method: "POST",
       mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: authToken!.Authorization,
-      },
-      body: JSON.stringify(Noteobj),
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(noteObj),
     });
     const data = await res.json();
-    if (res.status === 401) {
+    if (res.status === 400) {
       toast.error(data.message);
       return;
     }
     toast.success("Note Added Successfully");
     setRender((old) => !old);
   };
+
+  const handleLogout = async () => {
+    await fetch("http://localhost:8080/logout", {
+      mode: "cors",
+      credentials: "include",
+    });
+    navigate("/");
+  }
 
   return (
     <div className="App">
@@ -67,11 +73,7 @@ function NewNoteSection({ setRender, authToken, setAuthToken }: Props) {
         </button>
       </div>
       <div className="logout-container">
-        <button
-          onClick={() => {
-            setAuthToken(null);
-          }}
-        >
+        <button onClick={handleLogout}>
           Logout
         </button>
       </div>
