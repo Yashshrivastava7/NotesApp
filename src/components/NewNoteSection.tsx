@@ -31,8 +31,8 @@ function NewNoteSection({ setRender }: Props) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(noteObj),
     });
-    const data = await res.json();
     if (res.status === 400) {
+      const data = await res.json();
       toast.error(data.message);
       return;
     }
