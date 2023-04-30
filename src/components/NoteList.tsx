@@ -19,7 +19,7 @@ function NoteList({ setRender, render }: Props) {
         mode: "cors",
         credentials: "include",
       });
-      if (data.status === 403) {
+      if (data.status === 401) {
         navigate("/");
       }
       const jsonData = await data.json();
